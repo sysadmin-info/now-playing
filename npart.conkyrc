@@ -54,7 +54,7 @@ conky.config = {
 	alignment = 'bottom_left',					-- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
                                   				-- middle_left,middle_middle,middle_right,none
     gap_x = 50,									-- pixels between right or left border
-	gap_y = 115,								-- pixels between bottom or left border
+	gap_y = 150,								-- pixels between bottom or left border
 	minimum_height = 125,						-- minimum height of window
 	minimum_width = 125,						-- minimum width of window
 	maximum_width = 125,						-- maximum width of window
@@ -75,6 +75,7 @@ conky.config = {
 
 	use_xft = true,								-- xft font - anti-aliased font
 	xftalpha = 1,								-- alpha of the xft font - between 0-1
+	font = 'Gotham Book:size=8',      				-- font for complete conky unless in code defined
 	override_utf8_locale = true,				-- force UTF8 requires xft
 	uppercase = true,							-- uppercase or lowercase
 	short_units = true,							-- shorten units from KiB to k
@@ -95,8 +96,8 @@ conky.config = {
 
 
 conky.text = [[
-#${if_running spotify}${exec bash ~/.conky/now-playing/spotifyart}${color #fff}${image ~/.conky/now-playing/npart.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            ${voffset 112}
+${if_running spotify}${exec bash ~/.conky/now-playing/spotifyart}${color #fff}${image ~/.conky/now-playing/npart.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            
 ${endif}
-${if_running cmus}${exec bash ~/.conky/now-playing/cmusart}${color #fff}${image ~/.conky/now-playing/npart2.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            ${voffset 112}
+${if_running cmus}${exec bash ~/.conky/now-playing/cmusart}${color #fff}${image ~/.conky/now-playing/npart2.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            
 ${endif}
 ]];

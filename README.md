@@ -1,10 +1,18 @@
-# Now Clocking
+# Now Playing is a for of Now Clocking from https://github.com/gamehelp16/now-clocking made by my compatriot.
 
-Now Clocking is a Conky widget which shows a Monstercat style Now Playing when music is played via Spotify or cmus, or a clock when no music is playing.
+Now Playing is a Conky widget which shows a Monstercat style Now Playing when music is played via Spotify or cmus, or a clock when no music is playing.
 
-![screenshot](http://i.imgur.com/nAyLBTlm.png) ![screenshot 2](http://i.imgur.com/mshrZQUm.png) ![screenshot 3](http://i.imgur.com/Eglo1aim.png)
+Actually I commented out the clock, because I have a lot of clocks on my desktop thanks conky. Changed the conky code to the modern style, because the whole code was written for older version of conky. I simplified it a little bit, instead of copying everything to two different directories, I prefer to keep everything in one place.
 
-Imgur album containing full res images can be found [here](http://imgur.com/a/9Zcqu).
+It is working in Elementary OS so it should work also in Ubuntu, or Debian. 
+
+For Arch I will prepare separate branch, because I also made this working for Arch. Be patient, please.
+
+Other conkies I modified will be soon also accessible. If you are very impatient, you can follow my tutorial at YouTube: https://youtu.be/1uHQ1493c04 
+
+![screenshot](http://i.imgur.com/nAyLBTlm.png) ![screenshot 2](http://i.imgur.com/mshrZQUm.png) ![screenshot 3](http://i.imgur.com/Eglo1aim.png) ![screenshot 4](https://imgur.com/3nq4U9P)
+
+Imgur album containing full res images can be found [here](http://imgur.com/a/9Zcqu) and [here](https://imgur.com/a/aiX4bxG).
 
 Please keep in mind that this widget was originally created for personal use only (and also I'm still new to this ricing thing) so the script used might be a little bit messy and inefficient. The Conky widget is even based on [Helix Conky](http://figman.deviantart.com/art/Helix-Conky-204016625) which has been heavily modified to make it look like how I want to.
 
@@ -18,10 +26,9 @@ Please keep in mind that this widget was originally created for personal use onl
 ## Installation
 
 1. Install the fonts "Gotham Bold", "Gotham Book", and "Montserrat Light".
-2. Copy the files `cmusart` and `spotifyart` into `~/Documents`
-3. Copy the folder `np` into your `.conky` folder.
-4. Put the Conky widget into your desktop.
-5. You might want to adjust the positioning of the widget since as said above, this widget is originally created for personal use only so I just made it specifically for my screen size, etc.
+2. Copy all files into `~/.conky/now-playing` directory. If it is not there just create it, please.
+3. Put the Conky widget into your desktop.
+4. You might want to adjust the positioning of the widget since as said above, this widget is originally created for personal use only so I just made it specifically for my screen size, etc.
 
 ## Some questions you might ask
 
