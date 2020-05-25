@@ -44,42 +44,48 @@ conky.config = {
 	double_buffer = true,						-- Use the Xdbe extension? (eliminates flicker)
 	no_buffers = true,							-- Subtract (file system) buffers from used memory?
 	net_avg_samples = 2,						-- The number of samples to average for net data
-	text_buffer_size = 8000,					-- size of buffer for display of content of large variables - default 256
-	total_run_times = 0,						-- total run times
-	update_interval = 1,						-- update interval
-	max_user_text = 10000,
+	total_run_times = 0,						-- Total number of times for Conky to update before quitting. Zero makes Conky run forever.
+	update_interval = 1,						-- Update interval.
+	max_user_text = 32768,						-- Maximum size of user text buffer, i.e. layout below TEXT line in config file (default is 16384 bytes)
+	-- max_specials = 1024,						-- Maximum number of special things, e.g. fonts, offsets, aligns, etc. (default is 512). It seems not supported in new conky config.
+	text_buffer_size = 8000,					-- Size of the standard text buffer (default is 256 bytes). This buffer is used for intermediary text, such as individual lines, output from $exec vars, and 												-- various other variables. Increasing the size of this buffer can drastically reduce Conky's performance, but will allow for more text display per variable. The 											  -- size of this buffer cannot be smaller than the default value of 256 bytes. 
 
 	--Placement
 
 	alignment = 'bottom_left',					-- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
                                   				-- middle_left,middle_middle,middle_right,none
-    gap_x = 50,									-- pixels between right or left border
-	gap_y = 150,								-- pixels between bottom or left border
-	minimum_height = 125,						-- minimum height of window
-	minimum_width = 125,						-- minimum width of window
-	maximum_width = 125,						-- maximum width of window
+    gap_x = 50,									-- Pixels between right or left border
+	gap_y = 150,								-- Pixels between bottom or left border
+	minimum_height = 1,						-- Minimum height of window
+	-- maximum_height = 125,					-- Maximum height of window. It seems not supported in new conky config.
+	minimum_width = 1,						-- Minimum width of window
+	maximum_width = 125,						-- Maximum width of window
+
+	-- minimum_size 0 0							-- Minimum size of window. It seems not supported in new conky config.
+	-- maximum_size 125 125						-- Maximum size of window. It seems not supported in new conky config.
 
 
 	--Graphical
 
-	border_inner_margin  = 0,
-	border_outer_margin = 0,
+	-- border_margin = 0,							-- It seems not supported in new conky config.
+	border_inner_margin = 0,					-- Inner border margin in pixels (the margin between the border and text). 
+	border_outer_margin = 0,					-- Outer border margin in pixels (the margin between the border and the edge of the window). 
 	border_width = 0,							-- border width in pixels
 	draw_borders = false,						-- draw borders around text
 	draw_graph_borders = false,				 	-- draw borders around graphs	
-	draw_shades = false,						-- draw shades
 	draw_outline = false,						-- draw outline
-	stippled_borders = 3,
+	draw_shades = false,						-- draw shades
+	stippled_borders = 3,						-- Border stippling (dashing) in pixels 
 
 	--Textual
 
 	use_xft = true,								-- xft font - anti-aliased font
 	xftalpha = 1,								-- alpha of the xft font - between 0-1
-	font = 'Gotham Book:size=8',      				-- font for complete conky unless in code defined
+	font = 'Gotham Book:size=8',      			-- font for complete conky unless in code defined
 	override_utf8_locale = true,				-- force UTF8 requires xft
-	uppercase = true,							-- uppercase or lowercase
-	short_units = true,							-- shorten units from KiB to k
-	pad_percents = 2,
+	uppercase = true,							-- Boolean value, if true, text is rendered in upper case 
+	short_units = true,							-- Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off. 
+	pad_percents = 2,							-- Pad percentages to this many decimals (0 = no padding) 
 
 	--Windows
 
@@ -89,15 +95,10 @@ conky.config = {
 	own_window_transparent = false,				-- if own_window_argb_visual is true sets background opacity 0%
 	own_window_class = 'conky-semi',			-- manually set the WM_CLASS name for use with xprop
 	own_window_type = 'desktop',				-- if own_window true options are: normal/override/dock/desktop/panel
-	own_window_colour = '#000000',				-- set colour if own_window_transparent no	
+	own_window_colour = '000000',				-- If own_window_transparent no, set a specified background colour (defaults to black). Takes either a hex value (e.g. ffffff, note the lack of '#') or a valid 											-- RGB name (see /usr/lib/X11/rgb.txt) 	
 	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
 
 };
 
 
-conky.text = [[
-${if_running spotify}${exec bash ~/.conky/now-playing/spotifyart}${color #fff}${image ~/.conky/now-playing/npart.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            
-${endif}
-${if_running cmus}${exec bash ~/.conky/now-playing/cmusart}${color #fff}${image ~/.conky/now-playing/npart2.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=9}                            
-${endif}
-]];
+conky.text = [[${if_running spotify}${exec bash ~/.conky/now-playing/spotifyart}${color #fff}${image ~/.conky/now-playing/npart.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=15}                            ${voffset 112}${endif}${if_running cmus}${exec bash ~/.conky/now-playing/cmusart}${color #fff}${image ~/.conky/now-playing/npart2.jpg -p 0,0 -s 125x125 -n}${font Gotham Book:pixelsize=15}                            ${voffset 112}${endif}]];
