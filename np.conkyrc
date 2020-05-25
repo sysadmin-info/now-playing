@@ -1,0 +1,125 @@
+--[[
+#=====================================================================================
+#                               conky-spotify Main file
+# Date    : package-date
+# Author  : gamehelp16 at https://gamehelp16.github.io/
+# Version : package-version
+# License : Distributed under the terms of GNU GPL version 2 or later
+# Documentation : https://github.com/gamehelp16/now-clocking/
+#======================================================================================
+# CONKY
+# For commands in conky.config section:
+# http://conky.sourceforge.net/config_settings.html
+#
+# For commands in conky.text section:
+# http://conky.sourceforge.net/variables.html
+#=====================================================================================
+# FONTS
+# To avoid copyright infringements you will have to download
+# and install the fonts yourself sometimes.
+#=====================================================================================
+# GENERAL INFO ABOUT FONTS
+# Go and look for a nice font on sites like http://www.dafont.com/
+# Download and unzip - double click the font to install it (font-manager must be installed)
+# No font-manager then put fonts in ~/.fonts
+# Change the font name in the conky
+# The name can be known with a command in the terminal: fc-list | grep "part of name"
+# Change width and height of the conky according to font
+# Reboot your system or fc-cache -fv in terminal
+# Enjoy
+#=====================================================================================
+# FONTS FOR THIS CONKY
+# Gotham Book, Gotham Bold, Montserrat Light
+#======================================================================================
+
+
+]]
+
+conky.config = {
+
+	--Various settings
+
+	background = false,
+	cpu_avg_samples = 2,						-- The number of samples to average for CPU monitoring.	
+	double_buffer = true,						-- Use the Xdbe extension? (eliminates flicker)
+	no_buffers = true,							-- Subtract (file system) buffers from used memory?
+	net_avg_samples = 2,						-- The number of samples to average for net data
+	text_buffer_size = 8000,					-- size of buffer for display of content of large variables - default 256
+	total_run_times = 0,						-- total run times
+	update_interval = 1,						-- update interval
+	max_user_text = 10000,
+
+	--Placement
+
+	alignment = 'bottom_left',					-- top_left,top_middle,top_right,bottom_left,bottom_middle,bottom_right,
+                                  				-- middle_left,middle_middle,middle_right,none
+    gap_x = 50,									-- pixels between right or left border
+	gap_y = 115,								-- pixels between bottom or left border
+	minimum_height = 230,						-- minimum height of window
+	minimum_width = 230,						-- minimum height of window
+	maximum_width = 1270,						-- maximum height of window
+
+	--Graphical
+
+	border_width = 5, 							-- border width in pixels
+	draw_borders = false,						-- draw borders around text
+	draw_graph_borders = false,				 	-- draw borders around graphs
+	draw_shades = false,						-- draw shades
+	draw_outline = false,						-- draw outline
+	stippled_borders = 3,
+
+
+	--Textual
+
+	use_xft = true,								-- xft font - anti-aliased font
+	xftalpha = 1,								-- alpha of the xft font - between 0-1
+	font = 'Freesans:size=8',      				-- font for complete conky unless in code defined	
+	override_utf8_locale = true,				-- force UTF8 requires xft
+	uppercase = true,							-- uppercase or lowercase
+	use_spacer = 'right',						-- adds spaces around certain objects to align - default none
+	short_units = true,							-- shorten units from KiB to k
+	pad_percents = 2,
+
+	--Windows
+
+	own_window = true,							-- create your own window to draw	
+	own_window_argb_value = 0,					-- real transparency - composite manager required 0-255
+	own_window_argb_visual = true,				-- use ARGB - composite manager required
+	own_window_transparent = true,				-- if own_window_argb_visual is true sets background opacity 0%
+	own_window_class = 'conky-semi',			-- manually set the WM_CLASS name for use with xprop
+	own_window_type = 'desktop',				-- if own_window true options are: normal/override/dock/desktop/panel
+	own_window_colour = '#000000',				-- set colour if own_window_transparent no	
+	own_window_hints = 'undecorated,above,sticky,skip_taskbar,skip_pager',  -- if own_window true - just hints - own_window_type sets it
+
+};
+
+conky.text = [[
+${if_running spotify}
+
+${exec bash ~/.conky/now-playing/spotifyart}
+${image ~/.conky/now-playing/npart.jpg -p 0,70 -s 125x125 -n}
+${color #fff}${font Gotham Book:pixelsize=16}NOW PLAYING:
+${color #fff}${font Gotham Book:pixelsize=15}
+
+${color #fff}${font Gotham Bold:pixelsize=44}           ${font Gotham Bold:pixelsize=46}${exec dbus-send --session --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata'|egrep -A 2 "artist"|egrep -v "artist"|egrep -v "array"|cut -b 27-|tr -d '"'|egrep -v ^$}${font Gotham Bold:pixelsize=10}
+${color #fff}${font Gotham Book:pixelsize=44}           ${font Gotham Book:pixelsize=23}${exec dbus-send --session --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.freedesktop.DBus.Properties.Get string:'org.mpris.MediaPlayer2.Player' string:'Metadata'|egrep -A 1 "title"|egrep -v "title"|cut -b 44-|tr -d '"'|egrep -v ^$}
+${else}
+
+${if_running cmus}
+${color #fff}${font Gotham Book:pixelsize=18}NOW PLAYING:
+${color #fff}${font Gotham Book:pixelsize=15}
+
+
+${color #fff}${font Gotham Bold:pixelsize=44}           ${font Gotham Bold:pixelsize=46}${exec cmus-remote -Q 2>/dev/null | grep 'tag artist' | cut -d " " -f 3-}${font Gotham Bold:pixelsize=10}
+${color #fff}${font Gotham Bold:pixelsize=44}           ${font Gotham Book:pixelsize=23}${exec cmus-remote -Q 2>/dev/null | grep title | cut -d " " -f 3- }
+${else}
+${font Gotham Book:pixelsize=100}
+
+
+${font Gotham Book:pixelsize=45}
+
+
+#${color #fff}${font Gotham Book:pixelsize=80}${time %H:%M:%S}${font Gotham Book:pixelsize=65}
+#${color #fff}${font Montserrat Light:pixelsize=35}${time %B} ${time %d}${if_match ${time %d}==1}st${else}${if_match ${time %d}==2}nd${else}${if_match ${time %d}==3}rd${else}${if_match ${time %d}==4}th${else}${if_match ${time %d}==5}th${else}${if_match ${time %d}==5}th${else}${if_match ${time %d}==7}th${else}${if_match ${time %d}==8}th${else}${if_match ${time %d}==9}th${else}${if_match ${time %d}==10}th${else}${if_match ${time %d}==11}th${else}${if_match ${time %d}==12}th${else}${if_match ${time %d}==13}th${else}${if_match ${time %d}==14}th${else}${if_match ${time %d}==15}th${else}${if_match ${time %d}==16}th${else}${if_match ${time %d}==17}th${else}${if_match ${time %d}==18}th${else}${if_match ${time %d}==19}th${else}${if_match ${time %d}==20}th${else}${if_match ${time %d}==21}st${else}${if_match ${time %d}==22}nd${else}${if_match ${time %d}==23}rd${else}${if_match ${time %d}==24}th${else}${if_match ${time %d}==25}th${else}${if_match ${time %d}==26}th${else}${if_match ${time %d}==27}th${else}${if_match ${time %d}==28}th${else}${if_match ${time %d}==29}th${else}${if_match ${time %d}==30}th${else}${if_match ${time %d}==31}st${else}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif}${endif} ${time %Y}${endif}${endif}
+${endif}${endif}
+]];
