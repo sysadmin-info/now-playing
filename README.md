@@ -1,4 +1,5 @@
-# Now Playing is a for of Now Clocking from https://github.com/gamehelp16/now-clocking made by my compatriot.
+# Now Playing is a fork of Now Clocking 
+# from https://github.com/gamehelp16/now-clocking made by my compatriot.
 
 Now Playing is a Conky widget which shows a Monstercat style Now Playing when music is played via Spotify or cmus, or a clock when no music is playing.
 
