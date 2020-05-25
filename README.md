@@ -11,7 +11,7 @@ For Arch I will prepare separate branch, because I also made this working for Ar
 
 Other conkies I modified will be soon also accessible. If you are very impatient, you can follow my tutorial at YouTube: https://youtu.be/1uHQ1493c04 
 
-![screenshot](http://i.imgur.com/nAyLBTlm.png) ![screenshot 2](http://i.imgur.com/mshrZQUm.png) ![screenshot 3](http://i.imgur.com/Eglo1aim.png) ![screenshot 4](https://imgur.com/3nq4U9P)
+![screenshot](http://i.imgur.com/nAyLBTlm.png) ![screenshot 2](http://i.imgur.com/mshrZQUm.png) ![screenshot 3](http://i.imgur.com/Eglo1aim.png) ![screenshot 4](https://i.imgur.com/3nq4U9P.png)
 
 Imgur album containing full res images can be found [here](http://imgur.com/a/9Zcqu) and [here](https://imgur.com/a/aiX4bxG).
 
