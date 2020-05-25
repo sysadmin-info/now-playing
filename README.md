@@ -7,7 +7,7 @@ Actually I commented out the clock, because I have a lot of clocks on my desktop
 
 It is working in Elementary OS so it should work also in Ubuntu, or Debian. 
 
-For Arch I will prepare separate branch, because I also made this working for Arch. Be patient, please.
+For Arch separate branch is here: https://github.com/sysadmin-info/now-clocking/tree/now-clocking-arch
 
 Other conkies I modified will be soon also accessible. If you are very impatient, you can follow my tutorial at YouTube: https://youtu.be/1uHQ1493c04 
 
