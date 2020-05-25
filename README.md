@@ -30,6 +30,7 @@ Please keep in mind that this widget was originally created for personal use onl
 2. Copy all files into `~/.conky/now-playing` directory. If it is not there just create it, please.
 3. Put the Conky widget into your desktop.
 4. You might want to adjust the positioning of the widget since as said above, this widget is originally created for personal use only so I just made it specifically for my screen size, etc.
+5. Copy conky-delay.sh to your home directory and add it to autostart. Hope you know how to do this step.
 
 ## Some questions you might ask
 
